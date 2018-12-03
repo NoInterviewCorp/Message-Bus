@@ -1,9 +1,16 @@
 services:
     rabbitmq:
         image: rabbitmq:3-management
+        # network_mode: host
+        networks:
+            - potentiometer-network
         ports: 
-            - "0.0.0.0:15672:15672"
-            - "0.0.0.0:5672:5672"
+            - "15672:15672"
+            - "5672:5672"
         environment:
             - RABBITMQ_DEFAULT_USER=achausername
             - RABBITMQ_DEFAULT_PASS=strongpassword
+networks:
+    potentiometer-network:
+        name: potentiometer-network
+version: '3.5'
